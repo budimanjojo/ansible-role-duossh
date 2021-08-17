@@ -1,0 +1,12 @@
+ignore: |
+  .github/
+  meta/
+extends: default
+rules:
+  indentation:
+    spaces: 2
+    indent-sequences: consistent
+  truthy:
+    allowed-values: ['true', 'false', 'yes', 'no']
+  line-length:
+    max: 200

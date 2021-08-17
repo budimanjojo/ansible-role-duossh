@@ -1,0 +1,23 @@
+name: Ansible and YAML Lint
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ '*' ]
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Lint YAML
+      uses: ibiqlik/action-yamllint@v3
+      with:
+        file_or_dir: "."
+        config_file: "./.github/yamllint.yaml"
+    - name: Lint Ansible
+      uses: ansible/ansible-lint-action@master
+      with:
+        targets: "./"
+        args: "-c ./.github/.ansible-lint"

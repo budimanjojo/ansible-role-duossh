@@ -1,0 +1,5 @@
+---
+duossh_build_packages:
+- openssl-devel
+- pam-devel
+- "@development-tools"

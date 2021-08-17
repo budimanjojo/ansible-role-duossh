@@ -1,0 +1,9 @@
+; {{ ansible_managed }}
+
+[duo]
+ikey = {{ duossh_duo_ikey }}
+skey = {{ duossh_duo_skey }}
+host = {{ duossh_duo_host }}
+{% for key, value in duossh_duo_options.items() %}
+{{ key }} = {{ value }}
+{% endfor %}

@@ -1,0 +1,17 @@
+name: Galaxy Import
+
+on: 
+  workflow_dispatch:
+  push:
+    tags:
+    - '*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Galaxy Import
+      uses: robertdebock/galaxy-action@1.1.0
+      with:
+        galaxy_api_key: ${{ secrets.GALAXY_API_KEY }}

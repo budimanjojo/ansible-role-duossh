@@ -1,0 +1,25 @@
+---
+- name: Configure sshd_config file
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    insertbefore: "^Include "
+    firstmatch: true
+    validate: sshd -T -f %s
+  loop:
+  - regexp: "^ChallengeResponseAuthentication"
+    line: ChallengeResponseAuthentication yes
+  - regexp: "^PubkeyAuthentication"
+    line: PubkeyAuthentication yes
+  - regexp: "^PasswordAuthentication"
+    line: PasswordAuthentication no
+  - regexp: "^UsePAM"
+    line: UsePAM yes
+  - regexp: "^UseDNS"
+    line: UseDNS no
+  - regexp: "^AuthenticationMethods"
+    line: "AuthenticationMethods {{ 'publickey,keyboard-interactive:pam' if duossh_require_both else 'publickey keyboard-interactive:pam' }}"
+  loop_control:
+    label: "{{ item.line }}"
+  notify: Restart ssh

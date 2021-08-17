@@ -1,0 +1,16 @@
+---
+- name: Gather os specific variables
+  include_vars: "{{ lookup('first_found', items) }}"
+  vars:
+    items:
+      files:
+      - "{{ ansible_distribution }}.yml"
+      - "{{ ansible_os_family }}.yml"
+      paths:
+      - ./vars
+
+- include_tasks: duo.yml
+
+- include_tasks: pam.yml
+
+- include_tasks: ssh.yml

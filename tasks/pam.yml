@@ -1,0 +1,27 @@
+---
+- name: Configure pam for Archlinux
+  community.general.pamd:
+    name: sshd
+    type: auth
+    control: include
+    module_path: system-remote-login
+    new_control: required
+    new_module_path: pam_duo.so
+  when: ansible_os_family == 'Archlinux'
+
+- name: Configure pam for RedHat
+  community.general.pamd:
+    name: sshd
+    type: auth
+    control: substack
+    module_path: password-auth
+    new_control: required
+    new_module_path: "/lib{{ ansible_userspace_bits }}/security/pam_duo.so"
+  when: ansible_os_family == 'RedHat'
+
+- name: Configure pam for Debian
+  lineinfile:
+    path: /etc/pam.d/sshd
+    regexp: "^@include\\s+common-auth"
+    line: "auth [success=1 default=ignore] /lib{{ ansible_userspace_bits }}/security/pam_duo.so"
+  when: ansible_os_family == 'Debian'

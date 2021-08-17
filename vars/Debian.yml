@@ -1,0 +1,5 @@
+---
+duossh_build_packages:
+- libssl-dev
+- libpam-dev
+- build-essential

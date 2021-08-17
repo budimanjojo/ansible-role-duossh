@@ -1,0 +1,34 @@
+---
+galaxy_info:
+  role_name: duo_ssh
+  author: Budiman JOJO
+  description: Role to configure SSH using duo_unix
+  issue_tracker_url: http://github.com/budimanjojo/ansible-role-duossh/issues
+  license: license (MIT)
+  min_ansible_version: 2.1
+  platforms:
+  - name: Archlinux
+    versions:
+    - all
+  - name: Ubuntu
+    versions:
+    - all
+  - name: Debian
+    versions:
+    - all
+  - name: Fedora
+    versions:
+    - all
+
+  galaxy_tags:
+  - system
+  - packaging
+  - linux
+  - server
+  - development
+  - ssh
+  - pam
+  - security
+  - duo
+
+dependencies: []

@@ -1,0 +1,50 @@
+---
+- name: Remove the installed duo_unix package
+  pacman:
+    name: duo_unix
+    state: absent
+  when: ansible_os_family == 'Archlinux'
+
+- name: Ensure SELinux is disabled
+  ansible.posix.selinux:
+    state: disabled
+  when: ansible_os_family == 'RedHat'
+
+- name: Ensure needed build packages exists
+  package:
+    name: "{{ duossh_build_packages }}"
+    state: present
+
+- name: Get duo_unix archive
+  get_url:
+    url: "https://dl.duosecurity.com/duo_unix-{{ duossh_duosecurity_version }}.tar.gz"
+    dest: "/tmp/"
+    checksum: "sha256:{{ duossh_duosecurity_checksum }}"
+
+- name: Ensure tar is installed
+  package:
+    name: tar
+    state: present
+
+- name: Unpack duo_unix archive
+  unarchive:
+    src: "/tmp/duo_unix-{{ duossh_duosecurity_version }}.tar.gz"
+    dest: /tmp
+
+- name: Run configure
+  command:
+    chdir: "/tmp/duo_unix-{{ duossh_duosecurity_version }}"
+    cmd: "./configure {{ duossh_duosecurity_configure_options | join (' ') }}"
+    creates: "/tmp/duo_unix-{{ duossh_duosecurity_version }}/Makefile"
+  notify: Install duo_unix
+
+- name: Flush handlers
+  meta: flush_handlers
+
+- name: Create duo config file
+  template:
+    src: etc/duo/pam_duo.conf.j2
+    dest: /etc/duo/pam_duo.conf
+    owner: root
+    group: root
+    mode: 0600
