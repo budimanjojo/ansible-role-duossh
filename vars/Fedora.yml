@@ -3,4 +3,4 @@ duossh_build_packages:
 - openssl-devel
 - pam-devel
 - "@development-tools"
-libselinux_package_name: python-libselinux
+libselinux_package_name: python3-libselinux
