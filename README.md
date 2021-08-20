@@ -15,7 +15,7 @@ Role Variables
 
 Available variables are listed below, the default values are in [defaults/main.yml](./defaults/main.yml):
 ```
-duossh_duosecurity_version: duo version to install, currently at 1.11.4 (string)
+duossh_duosecurity_version: duo version to install, currently at duo_unix-1.11.4 (string)
 duossh_duosecurity_checksum: checksum for the tarball which you want to install, can be found at https://duo.com/docs/checksums#duo-unix (string)
 
 # List of configure option to build the binary, ignore if you are not sure

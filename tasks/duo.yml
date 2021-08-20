@@ -23,7 +23,7 @@
 
 - name: Get duo_unix archive
   get_url:
-    url: "https://dl.duosecurity.com/duo_unix-{{ duossh_duosecurity_version }}.tar.gz"
+    url: "https://dl.duosecurity.com/{{ duossh_duosecurity_version }}.tar.gz"
     dest: "/tmp/"
     checksum: "sha256:{{ duossh_duosecurity_checksum }}"
 

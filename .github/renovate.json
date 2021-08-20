@@ -1,0 +1,19 @@
+{
+    "enabled": true,
+    "semanticCommits": "enabled",
+    "labels": ["renovatebot"],
+    "commitBody": "Signed-Off by: Budiman JOJO <budimanjojo@gmail.com",
+    "semanticCommitScope": "deps",
+    "dependencyDashboard": false,
+    "suppressNotifications": ["prIgnoreNotification"],
+    "rebaseWhen": "conflicted",
+    "automerge": true,
+    "regexManagers": [
+        {
+            "fileMatch": ["defaults/main.yml"],
+            "matchStrings": [
+                "# renovate: depName=(?<depName>.*) datasource=(?<datasource>.*)\\nneovim_nvim_version: (?<currentValue>.*)\\b"
+            ]
+        }
+    ]
+}
