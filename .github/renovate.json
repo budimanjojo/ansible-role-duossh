@@ -15,5 +15,11 @@
                 "# renovate: depName=(?<depName>.*) datasource=(?<datasource>.*)\\n.+: (?<currentValue>.*)\\b"
             ]
         }
+    ],
+    "packageRules": [
+        {
+            "matchPackageNames": ["duosecurity/duo_unix"],
+            "versionScheme": "regex:^duo_unix-(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$"
+        }
     ]
 }
