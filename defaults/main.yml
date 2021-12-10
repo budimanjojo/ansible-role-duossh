@@ -1,6 +1,6 @@
 ---
 # renovate: depName=duosecurity/duo_unix datasource=github-releases
-duossh_duosecurity_version: duo_unix-1.11.4
+duossh_duosecurity_version: duo_unix-1.11.5
 duossh_duosecurity_checksum: 4fdb1a11473e167b7c062bd366807b9c436192a16b25031f2cb6e72f8da313c3
 duossh_duosecurity_configure_options:
 - --prefix=/usr

@@ -34,14 +34,14 @@
 
 - name: Unpack duo_unix archive
   unarchive:
-    src: "/tmp/duo_unix-{{ duossh_duosecurity_version }}.tar.gz"
+    src: "/tmp/{{ duossh_duosecurity_version }}.tar.gz"
     dest: /tmp
 
 - name: Run configure
   command:
-    chdir: "/tmp/duo_unix-{{ duossh_duosecurity_version }}"
+    chdir: "/tmp/{{ duossh_duosecurity_version }}"
     cmd: "./configure {{ duossh_duosecurity_configure_options | join (' ') }}"
-    creates: "/tmp/duo_unix-{{ duossh_duosecurity_version }}/Makefile"
+    creates: "/tmp/{{ duossh_duosecurity_version }}/Makefile"
   notify: Install duo_unix
 
 - name: Flush handlers

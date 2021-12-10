@@ -1,7 +1,7 @@
 ---
 - name: Install duo_unix
   make:
-    chdir: "/tmp/duo_unix-{{ duossh_duosecurity_version }}"
+    chdir: "/tmp/{{ duossh_duosecurity_version }}"
     target: install
 
 - name: Restart ssh
