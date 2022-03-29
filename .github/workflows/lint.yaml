@@ -17,7 +17,7 @@ jobs:
         file_or_dir: "."
         config_file: "./.github/yamllint.yaml"
     - name: Lint Ansible
-      uses: ansible/ansible-lint-action@master
+      uses: ansible/ansible-lint-action@main
       with:
         targets: "./"
         args: "-c ./.github/.ansible-lint"
