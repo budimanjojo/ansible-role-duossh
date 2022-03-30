@@ -19,5 +19,4 @@ jobs:
     - name: Lint Ansible
       uses: ansible/ansible-lint-action@main
       with:
-        targets: "./"
         args: "-c ./.github/.ansible-lint"
