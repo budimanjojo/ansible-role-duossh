@@ -1,6 +1,6 @@
 ---
 - name: Gather os specific variables
-  include_vars: "{{ lookup('first_found', items) }}"
+  ansible.builtin.include_vars: "{{ lookup('first_found', items) }}"
   vars:
     items:
       files:

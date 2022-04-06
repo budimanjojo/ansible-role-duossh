@@ -26,6 +26,7 @@
     url: "https://dl.duosecurity.com/{{ duossh_duosecurity_version }}.tar.gz"
     dest: "/tmp/"
     checksum: "sha256:{{ duossh_duosecurity_checksum }}"
+    mode: 0644
 
 - name: Ensure tar is installed
   ansible.builtin.package:
@@ -45,7 +46,7 @@
   notify: Install duo_unix
 
 - name: Flush handlers
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers
 
 - name: Create duo config file
   ansible.builtin.template:

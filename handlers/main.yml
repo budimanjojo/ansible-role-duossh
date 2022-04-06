@@ -5,6 +5,6 @@
     target: install
 
 - name: Restart ssh
-  service:
+  ansible.builtin.service:
     name: sshd
     state: restarted
