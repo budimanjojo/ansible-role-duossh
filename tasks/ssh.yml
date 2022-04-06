@@ -1,6 +1,6 @@
 ---
 - name: Configure sshd_config file
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/ssh/sshd_config
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"

@@ -1,12 +1,12 @@
 ---
 - name: Remove the installed duo_unix package
-  pacman:
+  community.general.pacman:
     name: duo_unix
     state: absent
   when: ansible_os_family == 'Archlinux'
 
 - name: Ensure libselinux exists
-  yum:
+  ansible.builtin.yum:
     name: "{{ libselinux_package_name }}"
     state: present
   when: ansible_os_family == 'RedHat'
@@ -17,28 +17,28 @@
   when: ansible_os_family == 'RedHat' and ansible_selinux.status == 'enabled'
 
 - name: Ensure needed build packages exists
-  package:
+  ansible.builtin.package:
     name: "{{ duossh_build_packages }}"
     state: present
 
 - name: Get duo_unix archive
-  get_url:
+  ansible.builtin.get_url:
     url: "https://dl.duosecurity.com/{{ duossh_duosecurity_version }}.tar.gz"
     dest: "/tmp/"
     checksum: "sha256:{{ duossh_duosecurity_checksum }}"
 
 - name: Ensure tar is installed
-  package:
+  ansible.builtin.package:
     name: tar
     state: present
 
 - name: Unpack duo_unix archive
-  unarchive:
+  ansible.builtin.unarchive:
     src: "/tmp/{{ duossh_duosecurity_version }}.tar.gz"
     dest: /tmp
 
 - name: Run configure
-  command:
+  ansible.builtin.command:
     chdir: "/tmp/{{ duossh_duosecurity_version }}"
     cmd: "./configure {{ duossh_duosecurity_configure_options | join (' ') }}"
     creates: "/tmp/{{ duossh_duosecurity_version }}/Makefile"
@@ -48,7 +48,7 @@
   meta: flush_handlers
 
 - name: Create duo config file
-  template:
+  ansible.builtin.template:
     src: etc/duo/pam_duo.conf.j2
     dest: /etc/duo/pam_duo.conf
     owner: root

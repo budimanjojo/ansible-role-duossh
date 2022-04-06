@@ -20,7 +20,7 @@
   when: ansible_os_family == 'RedHat'
 
 - name: Configure pam for Debian
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/pam.d/sshd
     regexp: "^@include\\s+common-auth"
     line: "auth [success=1 default=ignore] /lib{{ ansible_userspace_bits }}/security/pam_duo.so"
