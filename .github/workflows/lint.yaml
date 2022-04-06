@@ -18,5 +18,3 @@ jobs:
         config_file: "./.github/yamllint.yaml"
     - name: Lint Ansible
       uses: ansible/ansible-lint-action@main
-      with:
-        args: "-c ${{ github.workspace }}.github/.ansible-lint"
